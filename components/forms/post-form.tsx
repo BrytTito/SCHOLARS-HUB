@@ -20,7 +20,6 @@ export function PostForm({ channelId }: { channelId: string }) {
   useEffect(() => {
     if (state?.success) {
       formRef.current?.reset();
-      setKind("notice");
     }
   }, [state]);
 

@@ -1,139 +1,272 @@
-# Scholars Hub
+<div align="center">
 
-A registration and study-group platform for students taking **Maths 121**,
-**Maths 123** and **Stats 111**.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2563eb,50:3b82f6,100:1e3a8a&height=210&section=header&text=Scholars%20Hub&fontSize=76&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Weekly%20interactive%20study%20groups%20for%20Maths%20121%20%C2%B7%20Maths%20123%20%C2%B7%20Stats%20111&descAlignY=58&descSize=18" width="100%" alt="Scholars Hub" />
 
-Students register with their student ID, school and name, pick **1–3 courses**
-(GH₵10 per course **per week**, totalled live), then get a dashboard with
-broadcast channels (notices **and** polls) and a personal weekly timetable.
+<a href="https://github.com/BrytTito/SCHOLARS-HUB">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=21&pause=1200&color=2563EB&center=true&vCenter=true&width=780&lines=Register+with+your+student+ID;Pick+1%E2%80%933+courses+%E2%86%92+GH%E2%82%B510+each+per+week;Broadcast+notices+and+run+polls;Build+your+own+weekly+timetable" alt="Typing SVG" />
+</a>
 
----
+<br/>
 
-## Features
+<a href="https://github.com/BrytTito/SCHOLARS-HUB/actions/workflows/ci.yml"><img src="https://github.com/BrytTito/SCHOLARS-HUB/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+<a href="https://github.com/BrytTito/SCHOLARS-HUB/releases"><img src="https://img.shields.io/github/v/release/BrytTito/SCHOLARS-HUB?style=flat-square&color=2563eb" alt="Release" /></a>
+<img src="https://img.shields.io/github/last-commit/BrytTito/SCHOLARS-HUB?style=flat-square&color=3b82f6" alt="Last commit" />
+<img src="https://img.shields.io/github/license/BrytTito/SCHOLARS-HUB?style=flat-square&color=1e3a8a" alt="License" />
 
-| Area | What it does |
-| --- | --- |
-| **Registration** | Student ID, full name, school, 1–3 courses, password. Student ID doubles as the login name. |
-| **Pricing** | Every course is GH₵10/week; the weekly total is summed live while selecting and stored with the enrolment. |
-| **Channels** | Any student can create a channel. Only the owner broadcasts notices, exactly like a Telegram channel. |
-| **Polls** | Channel owners publish 2–6 option polls; every student gets one vote and can change it. Live counts and percentages. |
-| **Timetable** | Each student builds a personal Mon–Sun timetable of meeting days, times and venues. |
-| **Auth + data** | Supabase Auth (email/password under the hood) and Postgres with row-level security on every table. |
+<br/><br/>
 
-## Stack
+<img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,supabase,vercel,nodejs,git&theme=light" alt="Tech stack" />
 
-All open source:
+</div>
 
-- [Next.js](https://github.com/vercel/next.js) 16 (App Router, Server Actions)
-- [React](https://github.com/facebook/react) 19
-- [TypeScript](https://github.com/microsoft/TypeScript)
-- [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) + [shadcn/ui](https://github.com/shadcn-ui/ui) components
-- [lucide-react](https://github.com/lucide-icons/lucide) icons
-- [Supabase](https://github.com/supabase/supabase) (`supabase-js` + `@supabase/ssr`) for Postgres, Auth and RLS
+<br/>
 
-The project started from the official Next.js + Supabase starter
-([`vercel/next.js/examples/with-supabase`](https://github.com/vercel/next.js/tree/canary/examples/with-supabase))
-and was adapted to Scholars Hub.
+<div align="center">
+
+### 🎓 Register → 💸 See your weekly price → 📣 Join the channels → 🗓️ Plan your week
+
+</div>
 
 ---
 
-## 1. Create the Supabase project
+## ✨ What it does
 
-1. Go to [supabase.com/dashboard](https://supabase.com/dashboard) and create a project (free tier is fine).
-2. Open **SQL Editor → New query**, paste the whole of [`supabase/schema.sql`](supabase/schema.sql) and run it.
-   It creates the tables, seed courses and all row-level-security policies.
+<table>
+<tr>
+<td width="50%" valign="top">
 
-## 2. Turn off email confirmation
+### 📝 Registration
+Students sign up with their **student ID, full name and school**, then choose **1–3 courses** from:
 
-Students sign in with a student ID, so the app derives an internal address like
-`10987654@students.scholarshub.app`. No mail can ever reach it, so confirmations
-must be disabled:
+| Course | Code | Weekly price |
+| :--- | :---: | ---: |
+| Maths 121 | `MATH121` | **GH₵10.00** |
+| Maths 123 | `MATH123` | **GH₵10.00** |
+| Stats 111 | `STAT111` | **GH₵10.00** |
 
-**Authentication → Sign In / Providers → Email →** switch **Confirm email** off.
+The **weekly total updates live** as courses are ticked — 2 courses = `GH₵20.00`, 3 = `GH₵30.00`.
 
-## 3. Configure environment variables
+</td>
+<td width="50%" valign="top">
 
-Copy `.env.example` to `.env.local` and fill in the values from
-**Project Settings → API Keys**:
+### 📣 Channels & polls
+Every student can create a **broadcast channel**.
+Only the owner publishes — exactly like a Telegram channel.
 
-```bash
-NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxx.supabase.co
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
-# Older projects: use the "anon public" key instead, it is also supported.
+- 📢 Notices with author + timestamp
+- 📊 Polls with 2–6 options
+- ✅ One vote per student, changeable anytime
+- 📈 Live counts and percentages
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 🗓️ Personal timetable
+Each student builds a **Mon–Sun calendar** of meeting days:
+
+- Course, day, start and end time
+- Optional venue
+- Delete any entry in one click
+- Enforced `end > start` at the database level
+
+</td>
+<td width="50%" valign="top">
+
+### 🔐 Real accounts, real security
+- Student ID doubles as the login name
+- Postgres **row-level security on all 8 tables**
+- A 4th course is rejected by the database, not just the UI
+- Students can never read another student's timetable
+
+</td>
+</tr>
+</table>
+
+---
+
+## 📸 Screens
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="50%">
+<img src="docs/screenshots/dashboard.jpeg" width="100%" alt="Student dashboard" />
+<br/><sub><b>Dashboard</b> — courses, weekly total, timetable, channels</sub>
+</td>
+<td align="center" width="50%">
+<img src="docs/screenshots/channel-poll.jpeg" width="100%" alt="Channel with poll" />
+<br/><sub><b>Channel</b> — broadcast form, notice and live poll results</sub>
+</td>
+</tr>
+</table>
+
+</div>
+
+---
+
+## 🧠 How it fits together
+
+```mermaid
+flowchart LR
+    A[🎓 Student] -->|student ID + password| B[Supabase Auth]
+    B --> C[profiles]
+    C --> D[enrollments<br/>max 3 rows]
+    D --> E[💸 weekly price<br/>count × GH₵10]
+    C --> F[channels<br/>owner only]
+    F --> G[posts<br/>notice or poll]
+    G --> H[poll_options]
+    G --> I[poll_votes<br/>1 per student]
+    C --> J[timetable_entries]
+
+    style A fill:#dbeafe,stroke:#2563eb
+    style B fill:#e0f2fe,stroke:#0284c7
+    style E fill:#fef3c7,stroke:#f59e0b
+    style F fill:#ede9fe,stroke:#7c3aed
+    style J fill:#dcfce7,stroke:#16a34a
 ```
 
-## 4. Run it
+<details>
+<summary><b>Database schema (click to expand)</b></summary>
+
+```sql
+courses            (code PK, title, short_title, weekly_price)
+profiles           (id PK → auth.users, student_id UNIQUE, full_name, school)
+enrollments        (profile_id, course_code)            -- PK(profile_id, course_code)
+channels           (id, name, description, owner_id → profiles)
+posts              (id, channel_id, author_id, kind ∈ {notice, poll}, body)
+poll_options       (id, post_id, label, position)
+poll_votes         (post_id, voter_id, option_id)        -- PK(post_id, voter_id)
+timetable_entries  (id, profile_id, course_code, day_of_week, start_time, end_time, location)
+```
+
+Security highlights:
+
+- `enrollments` INSERT policy refuses a 4th row: `(select count(*) … ) < 3`
+- Only a channel owner may `INSERT` into `posts` for that channel
+- Only a poll's author may add its `poll_options`
+- Votes upsert on `(post_id, voter_id)`, so changing your mind works
+- RLS enabled on every table, with `auth.uid()` checks throughout
+
+</details>
+
+---
+
+## 🚀 Quick start
+
+<table>
+<tr><td><b>1 · Supabase</b></td></tr>
+<tr><td>
+
+Create a free project at [supabase.com/dashboard](https://supabase.com/dashboard), open **SQL Editor → New query**, paste all of [`supabase/schema.sql`](supabase/schema.sql) and run it.
+
+</td></tr>
+<tr><td><b>2 · Turn off email confirmation</b></td></tr>
+<tr><td>
+
+**Authentication → Sign In / Providers → Email → Confirm email = OFF**, then save.
+
+> Student IDs have no inbox, so the app derives an internal address such as
+> `10987654@students.scholarshub.app`. Never leave confirmation on — signups
+> would create the user but never a session.
+
+</td></tr>
+<tr><td><b>3 · Environment</b></td></tr>
+<tr><td>
+
+```bash
+cp .env.example .env.local
+```
+
+```dotenv
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+```
+
+</td></tr>
+<tr><td><b>4 · Run</b></td></tr>
+<tr><td>
 
 ```bash
 npm install
-npm run dev
+npm run dev      # http://localhost:3000
 ```
 
-Open <http://localhost:3000>, register a student, and you are in.
+</td></tr>
+</table>
 
-Useful scripts:
-
-```bash
-npm run dev        # development server
-npm run build      # production build
-npm run start      # run the production build
-npm run typecheck  # TypeScript, no emit
-npm run lint       # ESLint
-```
+| Script | Does |
+| :--- | :--- |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Serve the build |
+| `npm run typegen` | Generate Next.js route types |
+| `npm run typecheck` | `tsc --noEmit` |
+| `npm run lint` | ESLint |
 
 ---
 
-## Project layout
+## 🌳 Branches & releases
 
-```
-app/
-  page.tsx                  landing page + pricing
-  auth/login                sign in (student ID + password)
-  auth/sign-up              registration (courses + live weekly total)
-  dashboard/                profile, courses, weekly price, timetable
-  channels/                 channel list + create channel
-  channels/[id]/            notices, polls and voting
-  actions/channels.ts       server actions: channel/post/vote/delete
-  actions/timetable.ts      server actions: add/remove meeting
-components/                 forms, header, timetable grid, poll block, ui/
-lib/courses.ts              course catalogue, price rules, day/time helpers
-lib/student-id.ts           student ID -> internal email mapping
-lib/supabase/               browser client, server client, session proxy
-supabase/schema.sql         full database schema + RLS policies
-```
+| Branch | Purpose |
+| :--- | :--- |
+| `main` | Production-ready code, tagged on every release |
+| `develop` | Integration branch for the next release |
+| `feature/*` | Short-lived work branches, merged into `develop` |
+| `fix/*` | Bug fixes |
 
-## Data model
-
-```
-profiles (id -> auth.users, student_id unique, full_name, school)
-enrollments (profile_id, course_code)          -- max 3, enforced by trigger
-courses (code, title, short_title, weekly_price)
-channels (id, name, description, owner_id)
-posts (id, channel_id, author_id, kind: notice|poll, body)
-poll_options (id, post_id, label, position)
-poll_votes (post_id, voter_id, option_id)      -- one vote per student per poll
-timetable_entries (profile_id, course_code, day_of_week, start_time, end_time, location)
+```bash
+git checkout develop
+git checkout -b feature/my-change
+# ...work, commit...
+git checkout develop && git merge --no-ff feature/my-change
+git checkout main && git merge --ff-only develop
+git tag -a v1.1.0 -m "v1.1.0" && git push origin main --tags
 ```
 
-Security notes:
+### Releases
 
-- The enrolment `INSERT` policy rejects a 4th course in pure SQL, and the form
-  only offers three.
-- Only a channel's owner can insert posts in it, and only a post's author can add
-  its poll options.
-- Votes are unique per `(post_id, voter_id)`; changing a vote is an upsert.
-- Row-level security is enabled on every table; students can never read another
-  student's enrolments or timetable.
+| Tag | Date | Highlights |
+| :--- | :--- | :--- |
+| [`v1.0.0`](https://github.com/BrytTito/SCHOLARS-HUB/releases/tag/v1.0.0) | 14 Nov 2026 | First release — registration + pricing, channels with polls, personal timetable, RLS, CI |
 
-## Deploy
+---
 
-1. Push this repo to GitHub.
-2. Import it into [Vercel](https://vercel.com/new) (or any Node host).
-3. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` as
-   environment variables.
-4. In Supabase **Authentication → URL Configuration**, add your deployment URL
-   to *Site URL* and *Redirect URLs*.
+## ☁️ Deploy
 
-## Licence
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBrytTito%2FSCHOLARS-HUB&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY)
 
-MIT — see [LICENSE](LICENSE).
+1. Import the repo into Vercel.
+2. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
+3. In Supabase → **Authentication → URL Configuration**, add your Vercel domain.
+
+---
+
+## 🗺️ Roadmap
+
+- [x] Student ID registration with live weekly pricing
+- [x] Broadcast channels, notices and polls with live results
+- [x] Personal Mon–Sun timetable
+- [x] Row-level security + CI
+- [ ] Re-select / change courses after registration
+- [ ] WhatsApp-style member chat inside channels
+- [ ] Admin dashboard listing all registrations and weekly revenue
+- [ ] Mobile payments (MoMo) for weekly renewals
+
+---
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1e3a8a,50:3b82f6,100:2563eb&height=120&section=footer" width="100%" alt="footer" />
+
+<sub>Built with Next.js · React · TypeScript · Tailwind CSS · Supabase · shadcn/ui</sub>
+
+<br/>
+
+<a href="https://github.com/BrytTito/SCHOLARS-HUB/issues">🐛 Report a bug</a> ·
+<a href="https://github.com/BrytTito/SCHOLARS-HUB/issues">💡 Request a feature</a> ·
+<a href="https://github.com/BrytTito/SCHOLARS-HUB">⭐ Star the repo</a>
+
+</div>
