@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PasswordInput } from "@/components/ui/password-input";
 import {
   COURSES,
   WEEKLY_PRICE_PER_COURSE,
@@ -263,22 +264,23 @@ export function SignUpForm({
 
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input
+              <PasswordInput
                 id="password"
-                type="password"
                 required
                 autoComplete="new-password"
                 minLength={6}
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
               />
+              <p className="text-xs text-muted-foreground">
+                At least 6 characters. Tap the eye to check what you typed.
+              </p>
             </div>
 
             <div className="grid gap-2">
               <Label htmlFor="repeat-password">Repeat password</Label>
-              <Input
+              <PasswordInput
                 id="repeat-password"
-                type="password"
                 required
                 autoComplete="new-password"
                 minLength={6}
