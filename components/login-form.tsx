@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PasswordInput } from "@/components/ui/password-input";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import { studentIdToEmail } from "@/lib/student-id";
@@ -80,9 +81,8 @@ export function LoginForm({
 
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input
+              <PasswordInput
                 id="password"
-                type="password"
                 autoComplete="current-password"
                 required
                 value={password}
