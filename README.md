@@ -246,14 +246,28 @@ git tag -a v1.1.0 -m "v1.1.0" && git push origin main --tags
 
 ## 🗺️ Roadmap
 
+### Shipped in v1.0.0
+
 - [x] Student ID registration with live weekly pricing
 - [x] Broadcast channels, notices and polls with live results
 - [x] Personal Mon–Sun timetable
 - [x] Row-level security + CI
-- [ ] Re-select / change courses after registration
-- [ ] WhatsApp-style member chat inside channels
+
+### Next
+
+- [ ] Change / re-select courses after registration, and edit your profile
+- [ ] Privacy notice, terms and a privacy-aware data model — the app stores student IDs and emails
+- [ ] WhatsApp-style member chat inside channels (membership, replies, unread, realtime)
 - [ ] Admin dashboard listing all registrations and weekly revenue
-- [ ] Mobile payments (MoMo) for weekly renewals
+- [ ] Mobile payments (MoMo) for weekly renewals and expiring-subscription reminders
+- [ ] Tests and a test job in CI — there are currently none, so nothing guards a payment change
+
+### Full plan
+
+**[`docs/ROADMAP.md`](docs/ROADMAP.md)** holds the detailed, code-grounded plan: 16 gaps found in
+the current code, eight phases with acceptance criteria, the schema additions each phase needs,
+six decisions to make before starting, and a suggested first week. Read it before opening a PR
+on any of the items above.
 
 ---
 
