@@ -4,6 +4,7 @@ import { ArrowLeft, BarChart3, Megaphone, Trash2 } from "lucide-react";
 
 import { deletePost } from "@/app/actions/channels";
 import { PostForm } from "@/components/forms/post-form";
+import { BlurFade } from "@/components/motion/blur-fade";
 import { PollBlock, type PollOption } from "@/components/poll-block";
 import { SetupNotice } from "@/components/setup-notice";
 import { SiteHeader } from "@/components/site-header";
@@ -135,7 +136,7 @@ export default async function ChannelPage({
               </CardContent>
             </Card>
           ) : (
-            posts.map((post) => {
+            posts.map((post, index) => {
               const options: PollOption[] = (post.poll_options ?? [])
                 .slice()
                 .sort((a, b) => a.position - b.position)
@@ -152,59 +153,61 @@ export default async function ChannelPage({
               )?.id;
 
               return (
-                <Card key={post.id}>
-                  <CardHeader className="pb-3">
-                    <div className="flex items-start justify-between gap-3">
-                      <div>
-                        <CardTitle className="flex items-center gap-2 text-base">
-                          {post.kind === "poll" ? (
-                            <BarChart3 className="h-4 w-4 text-primary" />
-                          ) : (
-                            <Megaphone className="h-4 w-4 text-primary" />
-                          )}
-                          {firstRelation(post.profiles)?.full_name ??
-                            "Channel owner"}
-                        </CardTitle>
-                        <CardDescription>
-                          {new Date(post.created_at).toLocaleString(undefined, {
-                            dateStyle: "medium",
-                            timeStyle: "short",
-                          })}
-                        </CardDescription>
+                <BlurFade key={post.id} delay={Math.min(index, 6) * 0.06}>
+                  <Card>
+                    <CardHeader className="pb-3">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <CardTitle className="flex items-center gap-2 text-base">
+                            {post.kind === "poll" ? (
+                              <BarChart3 className="h-4 w-4 text-primary" />
+                            ) : (
+                              <Megaphone className="h-4 w-4 text-primary" />
+                            )}
+                            {firstRelation(post.profiles)?.full_name ??
+                              "Channel owner"}
+                          </CardTitle>
+                          <CardDescription>
+                            {new Date(post.created_at).toLocaleString(undefined, {
+                              dateStyle: "medium",
+                              timeStyle: "short",
+                            })}
+                          </CardDescription>
+                        </div>
+                        {post.author_id === user.id && (
+                          <form action={deletePost}>
+                            <input type="hidden" name="postId" value={post.id} />
+                            <input
+                              type="hidden"
+                              name="channelId"
+                              value={channel.id}
+                            />
+                            <Button
+                              type="submit"
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 px-2 text-muted-foreground hover:text-destructive"
+                              aria-label="Delete post"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </form>
+                        )}
                       </div>
-                      {post.author_id === user.id && (
-                        <form action={deletePost}>
-                          <input type="hidden" name="postId" value={post.id} />
-                          <input
-                            type="hidden"
-                            name="channelId"
-                            value={channel.id}
-                          />
-                          <Button
-                            type="submit"
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 px-2 text-muted-foreground hover:text-destructive"
-                            aria-label="Delete post"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </form>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p className="whitespace-pre-wrap text-sm">{post.body}</p>
+                      {post.kind === "poll" && options.length > 0 && (
+                        <PollBlock
+                          postId={post.id}
+                          channelId={channel.id}
+                          options={options}
+                          myVote={myVote}
+                        />
                       )}
-                    </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="whitespace-pre-wrap text-sm">{post.body}</p>
-                    {post.kind === "poll" && options.length > 0 && (
-                      <PollBlock
-                        postId={post.id}
-                        channelId={channel.id}
-                        options={options}
-                        myVote={myVote}
-                      />
-                    )}
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </BlurFade>
               );
             })
           )}

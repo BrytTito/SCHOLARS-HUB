@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { ArrowRight, Megaphone, PlusCircle } from "lucide-react";
 
 import { CreateChannelForm } from "@/components/forms/create-channel-form";
+import { BlurFade } from "@/components/motion/blur-fade";
 import { SetupNotice } from "@/components/setup-notice";
 import { SiteHeader } from "@/components/site-header";
 import {
@@ -74,30 +75,31 @@ export default async function ChannelsPage() {
                 </CardContent>
               </Card>
             ) : (
-              channels.map((channel) => (
-                <Link
-                  key={channel.id}
-                  href={`/channels/${channel.id}`}
-                  className="block rounded-xl border bg-card p-5 transition hover:border-primary/50 hover:shadow-sm"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h2 className="font-semibold">{channel.name}</h2>
-                      {channel.description && (
-                        <p className="mt-1 text-sm text-muted-foreground">
-                          {channel.description}
+              channels.map((channel, index) => (
+                <BlurFade key={channel.id} delay={index * 0.06}>
+                  <Link
+                    href={`/channels/${channel.id}`}
+                    className="card-lift block rounded-xl border bg-card p-5 hover:border-primary/50"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h2 className="font-semibold">{channel.name}</h2>
+                        {channel.description && (
+                          <p className="mt-1 text-sm text-muted-foreground">
+                            {channel.description}
+                          </p>
+                        )}
+                        <p className="mt-2 text-xs text-muted-foreground">
+                          {firstRelation(channel.profiles)?.full_name
+                            ? `Owned by ${firstRelation(channel.profiles)?.full_name}`
+                            : "Broadcast channel"}
+                          {channel.owner_id === user.id ? " · you" : ""}
                         </p>
-                      )}
-                      <p className="mt-2 text-xs text-muted-foreground">
-                        {firstRelation(channel.profiles)?.full_name
-                          ? `Owned by ${firstRelation(channel.profiles)?.full_name}`
-                          : "Broadcast channel"}
-                        {channel.owner_id === user.id ? " · you" : ""}
-                      </p>
+                      </div>
+                      <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
                     </div>
-                    <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground" />
-                  </div>
-                </Link>
+                  </Link>
+                </BlurFade>
               ))
             )}
           </section>

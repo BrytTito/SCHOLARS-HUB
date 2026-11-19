@@ -152,6 +152,25 @@ Security highlights:
 
 </details>
 
+### Motion
+
+Movement is a thin layer on top of the UI, not a rewrite of it:
+
+| Piece | What it does |
+|---|---|
+| `components/motion/blur-fade.tsx` | `BlurFade` — a reveal that starts with a 6px blur and a small offset, then settles. Accepts `delay`, `direction` and `inView`, so lists can be staggered and below-the-fold sections can wait until they are scrolled to. |
+| `app/template.tsx` | Route transition: every navigation fades in with 8px of travel in 0.3s. |
+| `.card-lift` (in `app/globals.css`) | Pointer-only hover lift on cards and channel rows. CSS only, so it costs nothing on touch. |
+| `.poll-bar` | Poll results grow from zero to their percentage, so a vote visibly lands. |
+| `.shake` | One short shake on a failed sign-in or registration. The only motion meant to be noticed. |
+
+Two sources, both MIT:
+
+- [`motion`](https://github.com/motiondivision/motion) — the animation library (`motion/react`).
+- [`BlurFade`](https://github.com/magicuidesign/magicui) from Magic UI — vendored and adapted, with attribution in the file header.
+
+Everything degrades to no motion when the visitor sets **reduce motion** in their OS: `BlurFade` and the route template check `useReducedMotion`, and a `prefers-reduced-motion` block in `app/globals.css` sets animation and transition durations to zero.
+
 ---
 
 ## 🚀 Quick start
