@@ -48,7 +48,7 @@ Status key: `⬜ todo` · `🟨 in progress` · `✅ done`
 | 13 | **No seed script.** `supabase/schema.sql` seeds the 3 courses and nothing else; a fresh dev database has no students, channels or posts to demo with. | `supabase/schema.sql` |
 | 14 | **No migrations directory.** `schema.sql` must be pasted into the SQL editor by hand, so schema changes are not reviewable or replayable. | only `supabase/schema.sql` exists |
 | 15 | **No observability.** No error reporting, no analytics, no structured logging; a production bug is invisible. | no Sentry/logging dependency |
-| 16 | **No accessibility or performance budget.** No `prefers-reduced-motion` handling, no documented contrast checks, no Lighthouse gate. | `app/globals.css` defines themes only |
+| 16 | **No accessibility or performance budget.** Motion now honours `prefers-reduced-motion` in both CSS and JS, but there are no documented contrast checks and no Lighthouse gate. | `app/globals.css`, `components/motion/blur-fade.tsx` |
 
 ---
 

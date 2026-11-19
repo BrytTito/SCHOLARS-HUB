@@ -46,7 +46,7 @@ export function PollBlock({
             >
               <span
                 aria-hidden
-                className="absolute inset-y-0 left-0 bg-primary/10"
+                className="poll-bar absolute inset-y-0 left-0 bg-primary/10"
                 style={{ width: `${percent}%` }}
               />
               <span className="relative flex items-center justify-between gap-3">
