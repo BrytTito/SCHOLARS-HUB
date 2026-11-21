@@ -120,6 +120,10 @@ Notes that matter operationally:
   Railway's `RAILWAY_PUBLIC_DOMAIN`, then to `http://localhost:3000` — which
   would make shared links point at localhost.
 - Railway injects `PORT`; `next start` reads it, so do not hard-code a port.
+- Do **not** set `NODE_ENV=production` as a service variable. The build needs
+  dev dependencies (TypeScript, Tailwind, ESLint config), and `npm ci` skips
+  them when `NODE_ENV=production` is present. Railway runs the service in
+  production mode without it.
 - No other variables are read. There is no service-role key anywhere.
 
 ### 3.3 Expose it
