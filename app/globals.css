@@ -67,4 +67,67 @@
   .container-page {
     @apply mx-auto w-full max-w-6xl px-5;
   }
+
+  /* Lift on hover — CSS only, so it costs nothing on touch devices where the
+     hover never fires and nothing to hydrate. */
+  .card-lift {
+    @apply transition-[transform,box-shadow,border-color] duration-300 ease-out;
+  }
+  .card-lift:hover {
+    @apply -translate-y-0.5 border-primary/40 shadow-md;
+  }
+  .card-lift:active {
+    @apply translate-y-0 shadow-sm;
+  }
+}
+
+/* A short, single shake for failed validation — the only motion in the app
+   that is meant to be noticed. */
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  60% {
+    transform: translateX(-2px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+.shake {
+  animation: shake 0.36s ease-in-out;
+}
+
+/* Poll results grow from zero to their percentage every time the block is
+   rendered, so a vote visibly lands. The width itself comes from the inline
+   style; the keyframe only supplies the starting point. */
+@keyframes grow-bar {
+  from {
+    width: 0;
+  }
+}
+
+.poll-bar {
+  animation: grow-bar 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Respect the OS setting: no travel, no fades, no shimmer. Components that use
+   Motion also check useReducedMotion, this covers the CSS side. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

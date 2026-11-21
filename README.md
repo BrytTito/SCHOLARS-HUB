@@ -15,7 +15,7 @@
 
 <br/><br/>
 
-<img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,supabase,vercel,nodejs,git&theme=light" alt="Tech stack" />
+<img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,supabase,nodejs,git&theme=light" alt="Tech stack" />
 
 </div>
 
@@ -152,6 +152,25 @@ Security highlights:
 
 </details>
 
+### Motion
+
+Movement is a thin layer on top of the UI, not a rewrite of it:
+
+| Piece | What it does |
+|---|---|
+| `components/motion/blur-fade.tsx` | `BlurFade` — a reveal that starts with a 6px blur and a small offset, then settles. Accepts `delay`, `direction` and `inView`, so lists can be staggered and below-the-fold sections can wait until they are scrolled to. |
+| `app/template.tsx` | Route transition: every navigation fades in with 8px of travel in 0.3s. |
+| `.card-lift` (in `app/globals.css`) | Pointer-only hover lift on cards and channel rows. CSS only, so it costs nothing on touch. |
+| `.poll-bar` | Poll results grow from zero to their percentage, so a vote visibly lands. |
+| `.shake` | One short shake on a failed sign-in or registration. The only motion meant to be noticed. |
+
+Two sources, both MIT:
+
+- [`motion`](https://github.com/motiondivision/motion) — the animation library (`motion/react`).
+- [`BlurFade`](https://github.com/magicuidesign/magicui) from Magic UI — vendored and adapted, with attribution in the file header.
+
+Everything degrades to no motion when the visitor sets **reduce motion** in their OS: `BlurFade` and the route template check `useReducedMotion`, and a `prefers-reduced-motion` block in `app/globals.css` sets animation and transition durations to zero.
+
 ---
 
 ## 🚀 Quick start
@@ -236,11 +255,32 @@ git tag -a v1.1.0 -m "v1.1.0" && git push origin main --tags
 
 ## ☁️ Deploy
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBrytTito%2FSCHOLARS-HUB&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY)
+Railway for the app, Supabase for the database and auth. One service, no
+Dockerfile, no cron jobs, no server-side secrets.
 
-1. Import the repo into Vercel.
-2. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`.
-3. In Supabase → **Authentication → URL Configuration**, add your Vercel domain.
+**[Deploy on Railway →](https://railway.com/new)**
+
+**Three steps:**
+
+1. **Supabase** — run [`supabase/schema.sql`](supabase/schema.sql) in the SQL
+   editor, keep **Confirm email off**, and set **Site URL** to your Railway
+   domain.
+2. **Railway** — deploy this repo as a service, then add
+   `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` and
+   `NEXT_PUBLIC_SITE_URL` as variables. [`railway.json`](railway.json) sets the
+   build, start and health-check commands; `.nvmrc` pins Node 22.
+3. **Generate a domain** → put it in `NEXT_PUBLIC_SITE_URL` and in Supabase →
+   **Authentication → URL Configuration**, then redeploy.
+
+If the two Supabase variables are missing, `/auth/login` and `/auth/sign-up`
+show a setup card instead of a form — a misconfigured deploy looks broken
+immediately, rather than failing after a student fills in the whole
+registration.
+
+**[`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md)** is the full runbook: Supabase
+settings that matter, Railway variables and their build-time behaviour, a
+twelve-step first-deploy check with pass conditions, rollback, day-2
+operations, and the limits to know before inviting real students.
 
 ---
 

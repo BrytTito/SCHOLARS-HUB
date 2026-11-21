@@ -48,7 +48,7 @@ Status key: `⬜ todo` · `🟨 in progress` · `✅ done`
 | 13 | **No seed script.** `supabase/schema.sql` seeds the 3 courses and nothing else; a fresh dev database has no students, channels or posts to demo with. | `supabase/schema.sql` |
 | 14 | **No migrations directory.** `schema.sql` must be pasted into the SQL editor by hand, so schema changes are not reviewable or replayable. | only `supabase/schema.sql` exists |
 | 15 | **No observability.** No error reporting, no analytics, no structured logging; a production bug is invisible. | no Sentry/logging dependency |
-| 16 | **No accessibility or performance budget.** No `prefers-reduced-motion` handling, no documented contrast checks, no Lighthouse gate. | `app/globals.css` defines themes only |
+| 16 | **No accessibility or performance budget.** Motion now honours `prefers-reduced-motion` in both CSS and JS, but there are no documented contrast checks and no Lighthouse gate. | `app/globals.css`, `components/motion/blur-fade.tsx` |
 
 ---
 
@@ -155,7 +155,7 @@ next until the previous one meets its **done when**.
 
 - [ ] ⬜ Playwright: 3 end-to-end paths — register → dashboard; create channel → post → vote; pay (test mode) → subscription active.
 - [ ] ⬜ CI matrix: `test` + `e2e` against a local Supabase (`supabase start` in the workflow), then build.
-- [ ] ⬜ Staging deploy from `develop`, production from `main`, both on Vercel with separate Supabase projects.
+- [ ] ⬜ Staging deploy from `develop`, production from `main`, both on Railway with separate Supabase projects.
 - [ ] ⬜ Document the release ritual already implied by the README: `feature/* → develop → main → tag`.
 - [ ] ⬜ `CONTRIBUTING.md`, `.env.example` completed for the new provider keys, and a `docs/` runbook for "a payment did not extend a subscription".
 
