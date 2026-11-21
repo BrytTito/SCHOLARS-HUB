@@ -155,7 +155,7 @@ next until the previous one meets its **done when**.
 
 - [ ] ⬜ Playwright: 3 end-to-end paths — register → dashboard; create channel → post → vote; pay (test mode) → subscription active.
 - [ ] ⬜ CI matrix: `test` + `e2e` against a local Supabase (`supabase start` in the workflow), then build.
-- [ ] ⬜ Staging deploy from `develop`, production from `main`, both on Vercel with separate Supabase projects.
+- [ ] ⬜ Staging deploy from `develop`, production from `main`, both on Railway with separate Supabase projects.
 - [ ] ⬜ Document the release ritual already implied by the README: `feature/* → develop → main → tag`.
 - [ ] ⬜ `CONTRIBUTING.md`, `.env.example` completed for the new provider keys, and a `docs/` runbook for "a payment did not extend a subscription".
 

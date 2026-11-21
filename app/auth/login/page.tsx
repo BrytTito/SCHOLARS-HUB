@@ -2,8 +2,13 @@ import Link from "next/link";
 import { ArrowLeft, GraduationCap } from "lucide-react";
 
 import { LoginForm } from "@/components/login-form";
+import { SetupNotice } from "@/components/setup-notice";
+import { hasSupabaseEnv } from "@/lib/supabase/env";
 
 export default function LoginPage() {
+  // See sign-up: fail early and explain, rather than throw inside the form.
+  if (!hasSupabaseEnv) return <SetupNotice />;
+
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-accent/40 p-6 md:p-10">
       <Link

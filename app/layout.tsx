@@ -3,12 +3,31 @@ import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+/**
+ * Absolute origin for canonical URLs and social images.
+ *
+ * Resolved in order: an explicit override (custom domains), Railway's generated
+ * domain, then localhost. Values are read at build time for static pages, which
+ * is why NEXT_PUBLIC_SITE_URL exists — a typo should not fail the build, so an
+ * unusable value is ignored rather than thrown.
+ */
+function origin(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  try {
+    return new URL(value.includes("://") ? value : `https://${value}`).origin;
+  } catch {
+    return undefined;
+  }
+}
+
+const siteUrl =
+  origin(process.env.NEXT_PUBLIC_SITE_URL) ??
+  origin(process.env.RAILWAY_PUBLIC_DOMAIN) ??
+  origin(process.env.VERCEL_URL) ??
+  "http://localhost:3000";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(defaultUrl),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Scholars Hub — weekly interactive study groups",
     template: "%s · Scholars Hub",

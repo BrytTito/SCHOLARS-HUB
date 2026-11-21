@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { hasSupabaseEnv, supabaseKey, supabaseUrl } from "@/lib/supabase/env";
 
-const PUBLIC_PREFIXES = ["/auth", "/_next", "/favicon", "/api/public"];
+const PUBLIC_PREFIXES = ["/auth", "/_next", "/favicon", "/api/health"];
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({

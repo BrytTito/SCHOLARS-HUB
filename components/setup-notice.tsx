@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Database } from "lucide-react";
 
 import { SiteHeader } from "@/components/site-header";
@@ -50,20 +49,16 @@ export function SetupNotice() {
                 Sign In / Providers → Email.
               </li>
               <li>
-                Put the project URL and publishable key in{" "}
-                <code className="rounded bg-muted px-1">.env.local</code>, then
-                restart the dev server.
+                Add the project URL and publishable key to{" "}
+                <code className="rounded bg-muted px-1">.env.local</code> for
+                local development — or to your host&apos;s environment variables
+                (Railway → Variables) and redeploy.
               </li>
             </ol>
             <p>
-              Details are in the project{" "}
-              <Link
-                href="/"
-                className="font-medium text-primary underline-offset-4 hover:underline"
-              >
-                README
-              </Link>
-              .
+              The full runbook, including Supabase URL configuration and a
+              post-deploy checklist, is in{" "}
+              <code className="rounded bg-muted px-1">docs/DEPLOYMENT.md</code>.
             </p>
           </CardContent>
         </Card>
