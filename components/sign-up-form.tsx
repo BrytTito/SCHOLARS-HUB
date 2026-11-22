@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
-import { GraduationCap } from "lucide-react";
 
+import { LogoCap } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -154,7 +154,7 @@ export function SignUpForm({
       <Card className="shadow-sm">
         <CardHeader>
           <span className="mb-2 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <GraduationCap className="h-5 w-5" />
+            <LogoCap className="h-5 w-5" />
           </span>
           <CardTitle className="text-2xl">Register for Scholars Hub</CardTitle>
           <CardDescription>

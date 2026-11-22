@@ -171,6 +171,30 @@ Two sources, both MIT:
 
 Everything degrades to no motion when the visitor sets **reduce motion** in their OS: `BlurFade` and the route template check `useReducedMotion`, and a `prefers-reduced-motion` block in `app/globals.css` sets animation and transition durations to zero.
 
+### Brand
+
+The logo is drawn in this repository — a white mortarboard on the app's own
+blue (`#2563eb`) — so nothing is borrowed and one drawing ships at every size.
+
+| Surface | File |
+|---|---|
+| Browser tab | `app/icon.svg`, plus a 16/32/48 `app/favicon.ico` |
+| iOS home screen | `app/apple-icon.png` (180, full bleed — iOS adds its own mask) |
+| Link previews | `app/opengraph-image.png`, `app/twitter-image.png` (1200 × 630) |
+| Install metadata | `app/manifest.ts` — name, theme colour, `any` + `maskable` icons |
+| Header, auth pages, registration card | `LogoCap` in `components/brand/logo.tsx` |
+| Docs and slides | `public/brand/` — mark (SVG, 192, 512), maskable 512, light and dark lockups |
+
+The sources are HTML in [`brand/`](brand/README.md). One command regenerates
+every raster asset:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File brand/render-assets.ps1
+```
+
+Chrome renders the HTML, the script downsamples, packs the `.ico`, and fails if
+the apple icon is not fully opaque — the one defect iOS shows immediately.
+
 ---
 
 ## 🚀 Quick start

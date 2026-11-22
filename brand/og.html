@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        background: #eff6ff;
+        color: #0f172a;
+        font-family: Geist, "Segoe UI", system-ui, -apple-system, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .canvas { position: relative; width: 1200px; height: 630px; }
+      .glow {
+        position: absolute; inset: -220px -260px auto auto;
+        width: 760px; height: 760px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(37,99,235,0.16) 0%, rgba(37,99,235,0) 68%);
+      }
+      .glow-2 {
+        position: absolute; inset: auto auto -280px -240px;
+        width: 620px; height: 620px; border-radius: 50%;
+        background: radial-gradient(circle, rgba(37,99,235,0.10) 0%, rgba(37,99,235,0) 70%);
+      }
+      .wrap {
+        position: relative; z-index: 2;
+        display: flex; align-items: center; gap: 48px;
+        padding: 0 64px; height: 630px;
+      }
+      .left { width: 600px; }
+      .brand { display: flex; align-items: center; gap: 18px; }
+      .brand-name { font-size: 30px; font-weight: 600; letter-spacing: -0.02em; }
+      h1 {
+        margin-top: 34px;
+        font-size: 64px; line-height: 1.04; font-weight: 700;
+        letter-spacing: -0.035em;
+      }
+      h1 em { font-style: normal; color: #2563eb; display: block; }
+      p.lead {
+        margin-top: 22px; max-width: 560px;
+        font-size: 24px; line-height: 1.45; font-weight: 400; color: #475569;
+      }
+      .pills { margin-top: 30px; display: flex; align-items: center; gap: 12px; }
+      .pill {
+        background: #dbeafe; color: #1e40af;
+        font-size: 20px; font-weight: 600;
+        padding: 12px 20px; border-radius: 999px;
+      }
+      .pill.solid { background: #2563eb; color: #ffffff; }
+      .card {
+        width: 360px; background: #ffffff; border: 1px solid #dbeafe;
+        border-radius: 24px; padding: 26px 24px;
+        box-shadow: 0 24px 60px -28px rgba(30, 64, 175, 0.35);
+      }
+      .card h2 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+      .card .sub { margin-top: 4px; font-size: 14px; color: #64748b; }
+      .rows { margin-top: 18px; }
+      .row {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 13px 0; border-top: 1px solid #eef2f7;
+      }
+      .row:first-child { border-top: none; }
+      .row .name { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 500; }
+      .dot {
+        width: 18px; height: 18px; border-radius: 50%;
+        background: #2563eb; position: relative; flex: none;
+      }
+      .dot::after {
+        content: ""; position: absolute; left: 6px; top: 4.5px;
+        width: 4px; height: 8px; border: solid #fff; border-width: 0 2px 2px 0;
+        transform: rotate(42deg);
+      }
+      .row .price { font-size: 15px; color: #334155; }
+      .total {
+        margin-top: 8px; background: #eff6ff; border-radius: 16px;
+        padding: 14px 16px; display: flex; align-items: center; justify-content: space-between;
+      }
+      .total span:first-child { font-size: 15px; font-weight: 600; color: #1e40af; }
+      .total span:last-child { font-size: 24px; font-weight: 700; color: #1e40af; letter-spacing: -0.02em; }
+    </style>
+  </head>
+  <body>
+    <div class="canvas">
+      <div class="glow"></div>
+      <div class="glow-2"></div>
+      <div class="wrap">
+        <div class="left">
+          <div class="brand">
+            <svg width="64" height="64" viewBox="-4 -4 72 72" aria-hidden="true">
+              <rect x="-4" y="-4" width="72" height="72" rx="17" fill="#2563eb" />
+              <g fill="#ffffff">
+                <path d="M32 17 54 26 32 35 10 26Z" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" />
+                <path d="M19 28 32 34.5 45 28V38C45 43.5 39.5 46.5 32 46.5S19 43.5 19 38Z" />
+              </g>
+              <path d="M54 26V36" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" />
+              <circle cx="54" cy="39.4" r="2.4" fill="#ffffff" />
+            </svg>
+            <span class="brand-name">Scholars Hub</span>
+          </div>
+          <h1>Study together.<em>Score higher.</em></h1>
+          <p class="lead">
+            Weekly study groups for Maths 121, Maths 123 and Stats 111 — channels,
+            polls and a timetable you control.
+          </p>
+          <div class="pills">
+            <span class="pill">GH₵10 per course, per week</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Your study basket</h2>
+          <div class="sub">Weekly plan preview</div>
+          <div class="rows">
+            <div class="row">
+              <span class="name"><span class="dot"></span>Maths 121</span>
+              <span class="price">GH₵10.00</span>
+            </div>
+            <div class="row">
+              <span class="name"><span class="dot"></span>Maths 123</span>
+              <span class="price">GH₵10.00</span>
+            </div>
+            <div class="row">
+              <span class="name"><span class="dot"></span>Stats 111</span>
+              <span class="price">GH₵10.00</span>
+            </div>
+          </div>
+          <div class="total">
+            <span>Weekly total</span>
+            <span>GH₵30.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

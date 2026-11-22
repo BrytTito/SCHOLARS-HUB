@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
@@ -34,6 +34,14 @@ export const metadata: Metadata = {
   },
   description:
     "Register for Scholars Hub: pick 1–3 courses, pay GH₵10 per course per week, join study channels with polls and keep a personal timetable.",
+};
+
+/**
+ * Browser chrome colour, matching the brand blue in `app/icon.svg`.
+ * Kept in `viewport` because Next 14 moved `themeColor` out of `metadata`.
+ */
+export const viewport: Viewport = {
+  themeColor: "#2563eb",
 };
 
 const geistSans = Geist({
