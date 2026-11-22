@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html, body {
+        width: 720px; height: 180px; overflow: hidden;
+        background: transparent;
+      }
+      .lockup {
+        display: flex; align-items: center; gap: 34px;
+        height: 180px; padding: 0 24px;
+        font-family: Geist, "Segoe UI", system-ui, sans-serif;
+        color: #ffffff;
+      }
+      svg { display: block; }
+      .name {
+        font-size: 72px; font-weight: 600; letter-spacing: -0.035em;
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="lockup">
+      <svg width="140" height="140" viewBox="-4 -4 72 72" aria-hidden="true">
+        <rect x="-4" y="-4" width="72" height="72" rx="17" fill="#2563eb" />
+        <g fill="#ffffff">
+          <path
+            d="M32 17 54 26 32 35 10 26Z"
+            stroke="#ffffff"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <path d="M19 28 32 34.5 45 28V38C45 43.5 39.5 46.5 32 46.5S19 43.5 19 38Z" />
+        </g>
+        <path
+          d="M54 26V36"
+          stroke="#ffffff"
+          stroke-width="2.4"
+          stroke-linecap="round"
+        />
+        <circle cx="54" cy="39.4" r="2.4" fill="#ffffff" />
+      </svg>
+      <span class="name">Scholars Hub</span>
+    </div>
+  </body>
+</html>

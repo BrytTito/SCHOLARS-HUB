@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { GraduationCap, LayoutDashboard, Megaphone } from "lucide-react";
+import { LayoutDashboard, Megaphone } from "lucide-react";
 
+import { LogoCap } from "@/components/brand/logo";
 import { LogoutButton } from "@/components/logout-button";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
@@ -30,7 +31,7 @@ export async function SiteHeader() {
       <div className="container-page flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex items-center gap-2 font-semibold">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <GraduationCap className="h-5 w-5" />
+            <LogoCap className="h-5 w-5" />
           </span>
           <span className="text-base tracking-tight">Scholars Hub</span>
         </Link>
