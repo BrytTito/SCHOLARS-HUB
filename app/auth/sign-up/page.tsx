@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowLeft, GraduationCap } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
+import { LogoCap } from "@/components/brand/logo";
 import { SetupNotice } from "@/components/setup-notice";
 import { SignUpForm } from "@/components/sign-up-form";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
@@ -22,7 +23,7 @@ export default function SignUpPage() {
       <div className="w-full max-w-md">
         <div className="mb-5 flex items-center justify-center gap-2 font-semibold">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
-            <GraduationCap className="h-5 w-5" />
+            <LogoCap className="h-5 w-5" />
           </span>
           Scholars Hub
         </div>
